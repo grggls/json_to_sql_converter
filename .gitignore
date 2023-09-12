@@ -1,0 +1,28 @@
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+
+# Ignore virtual environment directories
+.venv/
+venv/
+env/
+env-*/
+
+# Ignore local development files
+*.log
+*.sqlite
+*.db
+
+# Ignore Pipenv environment files
+Pipfile.lock
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore editor/IDE files
+.vscode/
+.idea/
+
+# Ignore build and distribution directories
+dist/
+build/
