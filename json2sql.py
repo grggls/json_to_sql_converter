@@ -1,5 +1,5 @@
 import argparse
-from json2sql import main as json_to_sql_main
+from json2sql import generate_query as json_to_sql
 
 
 def main():
@@ -11,7 +11,7 @@ def main():
         json_data = f.read()
 
     # Call your library function to process the JSON data
-    sql_query = json_to_sql_main(json_data)
+    sql_query = json_to_sql(json_data)
 
     # Print or save the SQL query
     print(sql_query)

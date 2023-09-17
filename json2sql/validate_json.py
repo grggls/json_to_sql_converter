@@ -1,7 +1,7 @@
 from jsonschema import validate, ValidationError
 
 
-def validate_json(data):
+def validate_json(json_data):
     # Define our schema
     schema = {
         "type": "object",
@@ -106,7 +106,7 @@ def validate_json(data):
     }
 
     try:
-        validate(instance=data, schema=schema)
+        validate(instance=json_data, schema=schema)
         return True
     except ValidationError as e:
         print(f"Validation failed: {e.message}")

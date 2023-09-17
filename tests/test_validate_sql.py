@@ -36,13 +36,13 @@ class TestValidateSQL(unittest.TestCase):
 
     def test_query_data_with_dummy_result(self):
         # load the schema
-        path = Path(__file__).parent / "test_data" / "dummy-result.sql"
+        path = Path(__file__).parent / "test_data" / "provided-result.sql"
         with open(path, "r") as f:
             sql_data = f.read()
         try:
             self.cursor.executescript(sql_data)
         except sqlite3.Error as e:
-            self.fail(f"File dummy-result.sql is invalid: {e}")
+            self.fail(f"File provided-result.sql is invalid: {e}")
 
         # Now, let's fetch the results and print them
         self.cursor.execute("SELECT * FROM temp_result")
