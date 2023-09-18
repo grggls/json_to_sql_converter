@@ -67,7 +67,7 @@ def generate_query(text_data):
         # Advance the from_node_key for the next iteration
         from_node_key = node_objects[node].key
 
-    # The last bit of the query string returning all results we've input, sorted, transformed, etc.
+    # The last bit of the query string returning all results we've input, sorted, etc.
     query_string += f"SELECT * FROM {from_node_key};"
 
     # verify that the sql is syntactically correct, at least

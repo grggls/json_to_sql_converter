@@ -8,7 +8,7 @@ class BaseNode:
         self.transform_object = transform_object
 
     def generate_sql(self):
-        return f"Node(key={self.key}, type={self.node_type}, transform_object={self.transform_object})"
+        return f"Node(key={self.key}, type={self.node_type}, transform_object={self.transform_object})"  # noqa: E501
 
 
 # {
@@ -75,7 +75,7 @@ class FilterNode(BaseNode):
                 for operation in operations
             ]
         )
-        return f"{self.key} as (\n    SELECT {input_node.field_list} FROM `{from_node_key}` WHERE `{variable_field_name}` {filter}\n),\n"
+        return f"{self.key} as (\n    SELECT {input_node.field_list} FROM `{from_node_key}` WHERE `{variable_field_name}` {filter}\n),\n"  # noqa: E501
 
 
 # {
@@ -102,7 +102,7 @@ class SortNode(BaseNode):
     def generate_sql(self, input_node: InputNode, from_node: str):
         # TODO: account for different orders
         targets = ", ".join([f"`{item['target']}`" for item in self.transform_object])
-        return f"{self.key} as (\n    SELECT {input_node.field_list} FROM `{from_node}` ORDER BY {targets} DESC\n),\n"
+        return f"{self.key} as (\n    SELECT {input_node.field_list} FROM `{from_node}` ORDER BY {targets} DESC\n),\n"  # noqa: E501
 
 
 # {
@@ -123,7 +123,7 @@ class SortNode(BaseNode):
 # )
 class TextTransformationNode(BaseNode):
     def generate_sql(self, input_node: InputNode, from_node: str):
-        # Extract fields from the input_node.field list with a regular expression looking for backticks
+        # Extract fields from the input_node.field list with a regular expression
         fields = re.findall(r"(`.*?`)", input_node.field_list)
 
         transformed_fields = []
@@ -142,7 +142,7 @@ class TextTransformationNode(BaseNode):
 
             transformed_fields.append(transformed_field)
 
-        return f"{self.key} as (\n    SELECT {', '.join(transformed_fields)} FROM `{from_node}`\n),\n"
+        return f"{self.key} as (\n    SELECT {', '.join(transformed_fields)} FROM `{from_node}`\n),\n"  # noqa: E501
 
 
 # {
@@ -161,4 +161,4 @@ class TextTransformationNode(BaseNode):
 # )
 class OutputNode(BaseNode):
     def generate_sql(self, input_node: InputNode, from_node: str):
-        return f"{self.key} as (\n    SELECT * FROM `{from_node}` limit {self.transform_object.get('limit', '')} offset 0\n)\n"
+        return f"{self.key} as (\n    SELECT * FROM `{from_node}` limit {self.transform_object.get('limit', '')} offset 0\n)\n"  # noqa: E501
