@@ -1,6 +1,7 @@
 from jsonschema import validate, ValidationError
 
-
+# from the json file provided with this assignment, generate a sql schema
+# that can be used to validate future json files/objects
 def validate_json(json_data):
     # Define our schema
     schema = {
